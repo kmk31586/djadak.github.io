@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* 确保页面和iframe充满整个屏幕 */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        #targetIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe id="targetIframe"></iframe>
+
+    <script>
+        // 获取URL中的参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const base64Url = urlParams.get('s'); // 获取Base64编码的URL参数
+
+        if (base64Url) {
+            // 解码Base64编码后的URL
+            const decodedUrl = atob(base64Url);
+            // 设置iframe的src为解码后的URL
+            document.getElementById('targetIframe').src = decodedUrl;
+        } else {
+            alert('未找到有效的URL参数!');
+        }
+    </script>
+</body>
+</html>
